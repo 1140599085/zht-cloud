@@ -1,0 +1,53 @@
+package com.zht.cloud.service;
+
+import com.zht.cloud.entity.FndContactInfo;
+import java.util.List;
+
+/**
+ * 供应商联系人表(FndContactInfo)表服务接口
+ *
+ * @author makejava
+ * @since 2020-06-04 15:54:56
+ */
+public interface FndContactInfoService {
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param contactId 主键
+     * @return 实例对象
+     */
+    FndContactInfo queryById(Integer contactId);
+
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param fndContactInfo 实例对象
+     * @return 对象列表
+     */
+    List<FndContactInfo> queryAll(FndContactInfo fndContactInfo);
+    /**
+     * 新增数据
+     *
+     * @param fndContactInfo 实例对象
+     * @return 实例对象
+     */
+    FndContactInfo insert(FndContactInfo fndContactInfo);
+
+    /**
+     * 修改数据
+     *
+     * @param fndContactInfo 实例对象
+     * @return 实例对象
+     */
+    FndContactInfo update(FndContactInfo fndContactInfo);
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param contactId 主键
+     * @return 是否成功
+     */
+    boolean deleteById(Integer contactId);
+
+}

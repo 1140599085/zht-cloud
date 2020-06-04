@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zht.cloud.dao.FndContactInfoDao">
+
+    <resultMap type="com.zht.cloud.entity.FndContactInfo" id="FndContactInfoMap">
+        <result property="contactId" column="contact_id" jdbcType="INTEGER"/>
+        <result property="companyCode" column="company_code" jdbcType="INTEGER"/>
+        <result property="contactName" column="contact_name" jdbcType="VARCHAR"/>
+        <result property="contactSex" column="contact_sex" jdbcType="VARCHAR"/>
+        <result property="position" column="position" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="enabled" column="enabled" jdbcType="VARCHAR"/>
+        <result property="defaultFlag" column="default_flag" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FndContactInfoMap">
+        select
+          contact_id, company_code, contact_name, contact_sex, position, phone, email, enabled, default_flag, create_by, create_time, update_by, update_time, remark
+        from fnd_contact_info
+        where contact_id = #{contactId}
+    </select>
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FndContactInfoMap">
+        select
+          contact_id, company_code, contact_name, contact_sex, position, phone, email, enabled, default_flag, create_by, create_time, update_by, update_time, remark
+        from fnd_contact_info
+        <where>
+            <if test="contactId != null">
+                and contact_id = #{contactId}
+            </if>
+            <if test="companyCode != null">
+                and company_code = #{companyCode}
+            </if>
+            <if test="contactName != null and contactName != ''">
+                and contact_name = #{contactName}
+            </if>
+            <if test="contactSex != null and contactSex != ''">
+                and contact_sex = #{contactSex}
+            </if>
+            <if test="position != null and position != ''">
+                and position = #{position}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="enabled != null and enabled != ''">
+                and enabled = #{enabled}
+            </if>
+            <if test="defaultFlag != null and defaultFlag != ''">
+                and default_flag = #{defaultFlag}
+            </if>
+            <if test="createBy != null and createBy != ''">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null and remark != ''">
+                and remark = #{remark}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="contactId" useGeneratedKeys="true">
+        insert into fnd_contact_info(company_code, contact_name, contact_sex, position, phone, email, enabled, default_flag, create_by, create_time, update_by, update_time, remark)
+        values (#{companyCode}, #{contactName}, #{contactSex}, #{position}, #{phone}, #{email}, #{enabled}, #{defaultFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update fnd_contact_info
+        <set>
+            <if test="companyCode != null">
+                company_code = #{companyCode},
+            </if>
+            <if test="contactName != null and contactName != ''">
+                contact_name = #{contactName},
+            </if>
+            <if test="contactSex != null and contactSex != ''">
+                contact_sex = #{contactSex},
+            </if>
+            <if test="position != null and position != ''">
+                position = #{position},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="enabled != null and enabled != ''">
+                enabled = #{enabled},
+            </if>
+            <if test="defaultFlag != null and defaultFlag != ''">
+                default_flag = #{defaultFlag},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where contact_id = #{contactId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from fnd_contact_info where contact_id = #{contactId}
+    </delete>
+
+</mapper>

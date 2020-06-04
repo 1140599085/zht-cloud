@@ -1,6 +1,7 @@
 package com.zht.cloud.domin;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
  * @author 张洪涛
  * @create 2020-05-14 10:02
  */
+@Data
 public class BaseEntity implements Serializable {
     /** 创建者 */
     private String createBy;
@@ -26,4 +28,5 @@ public class BaseEntity implements Serializable {
 
     /** 备注 */
     private String remark;
+
 }

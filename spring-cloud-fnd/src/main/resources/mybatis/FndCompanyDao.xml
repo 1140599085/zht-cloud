@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zht.cloud.dao.FndCompanyDao">
+
+    <resultMap type="com.zht.cloud.entity.FndCompany" id="FndCompanyMap">
+        <result property="companyId" column="company_id" jdbcType="INTEGER"/>
+        <result property="companyCode" column="company_code" jdbcType="VARCHAR"/>
+        <result property="companyDesc" column="company_desc" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="enterpriseNature" column="enterprise_nature" jdbcType="VARCHAR"/>
+        <result property="businessNumber" column="business_number" jdbcType="VARCHAR"/>
+        <result property="businessData" column="business_data" jdbcType="TIMESTAMP"/>
+        <result property="businessContent" column="business_content" jdbcType="VARCHAR"/>
+        <result property="legalName" column="legal_name" jdbcType="VARCHAR"/>
+        <result property="legalNumber" column="legal_number" jdbcType="VARCHAR"/>
+        <result property="legalSex" column="legal_sex" jdbcType="VARCHAR"/>
+        <result property="lifeStage" column="life_stage" jdbcType="VARCHAR"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FndCompanyMap">
+        select
+          company_id, company_code, company_desc, address, enterprise_nature, business_number, business_data, business_content, legal_name, legal_number, legal_sex, life_stage, create_by, create_time, update_by, update_time, remark
+        from fnd_company
+        where company_id = #{companyId}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FndCompanyMap">
+        select
+          company_id, company_code, company_desc, address, enterprise_nature, business_number, business_data, business_content, legal_name, legal_number, legal_sex, life_stage, create_by, create_time, update_by, update_time, remark
+        from fnd_company
+        <where>
+            <if test="companyId != null">
+                and company_id = #{companyId}
+            </if>
+            <if test="companyCode != null and companyCode != ''">
+                and company_code = #{companyCode}
+            </if>
+            <if test="companyDesc != null and companyDesc != ''">
+                and company_desc = #{companyDesc}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="enterpriseNature != null and enterpriseNature != ''">
+                and enterprise_nature = #{enterpriseNature}
+            </if>
+            <if test="businessNumber != null and businessNumber != ''">
+                and business_number = #{businessNumber}
+            </if>
+            <if test="businessData != null">
+                and business_data = #{businessData}
+            </if>
+            <if test="businessContent != null and businessContent != ''">
+                and business_content = #{businessContent}
+            </if>
+            <if test="legalName != null and legalName != ''">
+                and legal_name = #{legalName}
+            </if>
+            <if test="legalNumber != null and legalNumber != ''">
+                and legal_number = #{legalNumber}
+            </if>
+            <if test="legalSex != null and legalSex != ''">
+                and legal_sex = #{legalSex}
+            </if>
+            <if test="lifeStage != null and lifeStage != ''">
+                and life_stage = #{lifeStage}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="companyId" useGeneratedKeys="true">
+        insert into fnd_company(company_code, company_desc, address, enterprise_nature, business_number, business_data, business_content, legal_name, legal_number, legal_sex, life_stage, create_by, create_time, update_by, update_time, remark)
+        values (#{companyCode}, #{companyDesc}, #{address}, #{enterpriseNature}, #{businessNumber}, #{businessData}, #{businessContent}, #{legalName}, #{legalNumber}, #{legalSex}, #{lifeStage}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}, #{remark})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update fnd_company
+        <set>
+            <if test="companyCode != null and companyCode != ''">
+                company_code = #{companyCode},
+            </if>
+            <if test="companyDesc != null and companyDesc != ''">
+                company_desc = #{companyDesc},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="enterpriseNature != null and enterpriseNature != ''">
+                enterprise_nature = #{enterpriseNature},
+            </if>
+            <if test="businessNumber != null and businessNumber != ''">
+                business_number = #{businessNumber},
+            </if>
+            <if test="businessData != null">
+                business_data = #{businessData},
+            </if>
+            <if test="businessContent != null and businessContent != ''">
+                business_content = #{businessContent},
+            </if>
+            <if test="legalName != null and legalName != ''">
+                legal_name = #{legalName},
+            </if>
+            <if test="legalNumber != null and legalNumber != ''">
+                legal_number = #{legalNumber},
+            </if>
+            <if test="legalSex != null and legalSex != ''">
+                legal_sex = #{legalSex},
+            </if>
+            <if test="lifeStage != null and lifeStage != ''">
+                life_stage = #{lifeStage},
+            </if>
+            <if test="updateBy != null and updateBy != ''">
+                update_by = #{updateBy},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+        </set>
+        where company_id = #{companyId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from fnd_company where company_id = #{companyId}
+    </delete>
+
+</mapper>
