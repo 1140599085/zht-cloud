@@ -25,7 +25,12 @@
         from fnd_address_info
         where address_id = #{addressId}
     </select>
-
+    <select id="queryByCompanyCode" resultMap="FndAddressInfoMap">
+        select
+          address_id, company_code, country, province, city, address_detail, post_code, enabled, create_by, create_time, update_by, update_time, remark
+        from fnd_address_info
+        where company_code = #{companyCode}
+    </select>
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="FndAddressInfoMap">
         select

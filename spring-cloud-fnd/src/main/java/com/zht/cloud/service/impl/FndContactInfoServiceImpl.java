@@ -30,6 +30,11 @@ public class FndContactInfoServiceImpl implements FndContactInfoService {
         return this.fndContactInfoDao.queryById(contactId);
     }
 
+    @Override
+    public List<FndContactInfo> queryByCompanyCode(String companyCode) {
+        return fndContactInfoDao.queryByCompanyCode(companyCode);
+    }
+
 
     @Override
     public List<FndContactInfo> queryAll(FndContactInfo fndContactInfo) {

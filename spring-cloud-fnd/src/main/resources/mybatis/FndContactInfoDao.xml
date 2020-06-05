@@ -26,7 +26,12 @@
         from fnd_contact_info
         where contact_id = #{contactId}
     </select>
-
+    <select id="queryByCompanyCode" resultMap="FndContactInfoMap">
+        select
+          contact_id, company_code, contact_name, contact_sex, position, phone, email, enabled, default_flag, create_by, create_time, update_by, update_time, remark
+        from fnd_contact_info
+        where company_code = #{companyCode}
+    </select>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="FndContactInfoMap">

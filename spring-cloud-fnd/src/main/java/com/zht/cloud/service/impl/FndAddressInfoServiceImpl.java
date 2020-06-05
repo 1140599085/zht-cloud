@@ -31,6 +31,11 @@ public class FndAddressInfoServiceImpl implements FndAddressInfoService {
     }
 
     @Override
+    public List<FndAddressInfo> queryByCompanyCode(String companyCode) {
+        return fndAddressInfoDao.queryByCompanyCode(companyCode);
+    }
+
+    @Override
     public List<FndAddressInfo> queryAll(FndAddressInfo fndAddressInfo) {
         return fndAddressInfoDao.queryAll(fndAddressInfo);
     }

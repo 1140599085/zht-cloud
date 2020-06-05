@@ -2,7 +2,6 @@ package com.zht.cloud.dao;
 
 import com.zht.cloud.entity.FndContactInfo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
@@ -21,7 +20,13 @@ public interface FndContactInfoDao {
      * @return 实例对象
      */
     FndContactInfo queryById(Integer contactId);
-
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param companyCode
+     * @return 实例对象
+     */
+    List<FndContactInfo> queryByCompanyCode(String companyCode);
 
 
     /**

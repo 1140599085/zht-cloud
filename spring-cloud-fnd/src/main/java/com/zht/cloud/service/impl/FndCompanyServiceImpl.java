@@ -1,7 +1,11 @@
 package com.zht.cloud.service.impl;
 
+import com.zht.cloud.dao.FndAccountInfoDao;
+import com.zht.cloud.dao.FndAddressInfoDao;
+import com.zht.cloud.dao.FndContactInfoDao;
 import com.zht.cloud.entity.FndCompany;
 import com.zht.cloud.dao.FndCompanyDao;
+import com.zht.cloud.entity.vo.FndCompanyVo;
 import com.zht.cloud.service.FndCompanyService;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,16 @@ import java.util.List;
 public class FndCompanyServiceImpl implements FndCompanyService {
     @Resource
     private FndCompanyDao fndCompanyDao;
+
+    @Resource
+    FndAddressInfoDao fndAddressInfoDao;
+
+    @Resource
+    FndAccountInfoDao fndAccountInfoDao;
+
+    @Resource
+    FndContactInfoDao fndContactInfoDao;
+
 
     /**
      * 通过ID查询单条数据
@@ -69,5 +83,20 @@ public class FndCompanyServiceImpl implements FndCompanyService {
     @Override
     public boolean deleteById(Integer companyId) {
         return this.fndCompanyDao.deleteById(companyId) > 0;
+    }
+
+    @Override
+    public FndCompanyVo queryByCompanyId(Integer companyId) {
+        FndCompanyVo fndCompanyVo = new FndCompanyVo();
+        FndCompany fndCompany = fndCompanyDao.queryById(companyId);
+        if(fndCompany==null){
+            return null;
+        }
+        String companyCode = fndCompany.getCompanyCode();
+        fndCompanyVo.setFndCompany(fndCompany);
+        fndCompanyVo.setAccountInfos(fndAccountInfoDao.queryByCompanyCode(companyCode));
+        fndCompanyVo.setAddressInfos(fndAddressInfoDao.queryByCompanyCode(companyCode));
+        fndCompanyVo.setContactInfos(fndContactInfoDao.queryByCompanyCode(companyCode));
+        return fndCompanyVo;
     }
 }

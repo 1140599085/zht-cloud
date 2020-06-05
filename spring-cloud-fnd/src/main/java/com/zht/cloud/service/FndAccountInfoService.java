@@ -18,7 +18,13 @@ public interface FndAccountInfoService {
      * @return 实例对象
      */
     FndAccountInfo queryById(Integer accountId);
-
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param companyCode
+     * @return 实例对象
+     */
+    List<FndAccountInfo> queryByCompanyCode(String companyCode);
     /**
      * 通过实体作为筛选条件查询
      *

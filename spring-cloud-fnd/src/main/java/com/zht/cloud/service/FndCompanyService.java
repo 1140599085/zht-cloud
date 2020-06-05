@@ -1,6 +1,8 @@
 package com.zht.cloud.service;
 
 import com.zht.cloud.entity.FndCompany;
+import com.zht.cloud.entity.vo.FndCompanyVo;
+
 import java.util.List;
 
 /**
@@ -50,4 +52,11 @@ public interface FndCompanyService {
      */
     boolean deleteById(Integer companyId);
 
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param companyId 主键
+     * @return 实例对象
+     */
+    FndCompanyVo queryByCompanyId(Integer companyId);
 }

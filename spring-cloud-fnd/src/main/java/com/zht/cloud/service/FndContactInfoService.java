@@ -1,6 +1,8 @@
 package com.zht.cloud.service;
 
 import com.zht.cloud.entity.FndContactInfo;
+import com.zht.cloud.entity.vo.FndCompanyVo;
+
 import java.util.List;
 
 /**
@@ -18,7 +20,13 @@ public interface FndContactInfoService {
      * @return 实例对象
      */
     FndContactInfo queryById(Integer contactId);
-
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param companyCode
+     * @return 实例对象
+     */
+    List<FndContactInfo> queryByCompanyCode(String companyCode);
     /**
      * 通过实体作为筛选条件查询
      *

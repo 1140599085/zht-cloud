@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zht.cloud.domin.CommonResult;
 import com.zht.cloud.entity.FndCompany;
+import com.zht.cloud.entity.vo.FndCompanyVo;
 import com.zht.cloud.service.FndCompanyService;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,12 +49,15 @@ public class FndCompanyController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
-    public CommonResult selectOne(Integer id) {
+    @GetMapping("get/{id}")
+    public CommonResult selectOne(@PathVariable("id") Integer id) {
         FndCompany fndCompany = fndCompanyService.queryById(id);
         return CommonResult.success("查询成功",fndCompany);
     }
-    @GetMapping("selectAll")
+    /*
+    * 查询去部的数据
+    * */
+    @GetMapping("getAll")
     public CommonResult selectAll(@RequestParam(value = "pageNum",defaultValue ="1") Integer pageNum,
                                 @RequestParam(value = "pageSize",defaultValue ="10") Integer pageSize,
                                 FndCompany fndCompany) {
@@ -61,5 +65,11 @@ public class FndCompanyController {
         List<FndCompany> fndCompanies = fndCompanyService.queryAll(fndCompany);
         PageInfo<FndCompany> fndCompanyPageInfo = new PageInfo<>(fndCompanies);
         return CommonResult.success("查询成功",fndCompanyPageInfo);
+    }
+
+    @GetMapping("getVo/{id}")
+    public CommonResult selectVo(@PathVariable("id") Integer id) {
+        FndCompanyVo fndCompanyVo = fndCompanyService.queryByCompanyId(id);
+        return CommonResult.success("查询成功",fndCompanyVo);
     }
 }

@@ -31,6 +31,11 @@ public class FndAccountInfoServiceImpl implements FndAccountInfoService {
     }
 
     @Override
+    public List<FndAccountInfo> queryByCompanyCode(String companyCode) {
+        return fndAccountInfoDao.queryByCompanyCode(companyCode);
+    }
+
+    @Override
     public List<FndAccountInfo> queryAll(FndAccountInfo fndAccountInfo) {
         return fndAccountInfoDao.queryAll(fndAccountInfo);
     }

@@ -2,7 +2,6 @@ package com.zht.cloud.dao;
 
 import com.zht.cloud.entity.FndAddressInfo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
@@ -21,7 +20,13 @@ public interface FndAddressInfoDao {
      * @return 实例对象
      */
     FndAddressInfo queryById(Integer addressId);
-
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param companyCode
+     * @return 实例对象
+     */
+    List<FndAddressInfo> queryByCompanyCode(String companyCode);
 
     /**
      * 通过实体作为筛选条件查询

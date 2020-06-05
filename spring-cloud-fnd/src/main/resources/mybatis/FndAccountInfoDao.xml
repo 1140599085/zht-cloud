@@ -24,6 +24,12 @@
         from fnd_account_info
         where account_id = #{accountId}
     </select>
+    <select id="queryByCompanyCode" resultMap="FndAccountInfoMap">
+        select
+          account_id, company_code, bank_name, branch_name, account_name, account_num, enabled, create_by, create_time, update_by, update_time, remark
+        from fnd_account_info
+        where company_code = #{companyCode}
+    </select>
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="FndAccountInfoMap">
         select
